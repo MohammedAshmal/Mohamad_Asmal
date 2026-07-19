@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Screenshots — Mohamad Asmal</title>
+    <meta name="theme-color" content="#050816" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#050816",
+              bg2: "#0F172A",
+              a1: "#38BDF8",
+              a2: "#7C3AED",
+              a3: "#06B6D4",
+              txt2: "#94A3B8",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+              sans: ["Inter", "ui-sans-serif", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-bg text-white antialiased min-h-screen">
+    <header class="border-b border-white/10">
+      <div class="max-w-6xl mx-auto px-5 md:px-8 h-[64px] flex items-center justify-between">
+        <a
+          href="index.html#projects"
+          class="font-mono text-sm text-txt2 hover:text-a1 transition-colors flex items-center gap-2"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Back to portfolio
+        </a>
+        <span class="font-display font-bold tracking-tight text-white/80 hidden sm:inline">
+          Sperz<span class="text-a1">X</span>.code
+        </span>
+      </div>
+    </header>
+
+    <main id="app" class="max-w-6xl mx-auto px-5 md:px-8 py-14">
+      <!-- content injected by script below -->
+    </main>
+
+    <!-- Lightbox -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 md:p-10"
+    >
+      <button
+        id="lightbox-close"
+        aria-label="Close"
+        class="absolute top-4 right-4 md:top-6 md:right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xl transition-colors"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button
+        id="lightbox-prev"
+        aria-label="Previous screenshot"
+        class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xl transition-colors"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button
+        id="lightbox-next"
+        aria-label="Next screenshot"
+        class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xl transition-colors"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <div class="max-w-5xl w-full flex flex-col items-center gap-4">
+        <img id="lightbox-img" src="" alt="" class="max-h-[75vh] w-auto rounded-xl border border-white/10 object-contain" />
+        <p id="lightbox-caption" class="text-txt2 text-sm text-center font-mono max-w-2xl"></p>
+      </div>
+    </div>
+
+    <script src="projects-data.js"></script>
+    <script>
+      (() => {
+        const app = document.getElementById("app");
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get("project");
+        const data = window.PROJECTS && window.PROJECTS[slug];
+
+        if (!data) {
+          app.innerHTML = `
+            <div class="text-center py-20">
+              <p class="eyebrow flex justify-center font-mono text-a1 text-xs tracking-widest">NOT FOUND</p>
+              <h1 class="font-display text-3xl md:text-4xl font-bold mt-3">Project not found</h1>
+              <p class="text-txt2 mt-4">This project doesn't exist or the link is missing its "project" parameter.</p>
+              <a href="index.html#projects" class="inline-flex items-center gap-2 mt-8 font-mono text-sm text-a1 hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> Back to portfolio
+              </a>
+            </div>`;
+          return;
+        }
+
+        const tagsHTML = (data.tags || [])
+          .map(
+            (t) =>
+              `<span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1">${t}</span>`
+          )
+          .join("");
+
+        const shots = data.screenshots || [];
+
+        const header = `
+          <div class="max-w-3xl">
+            <p class="font-mono text-xs tracking-widest text-a1">PROJECT</p>
+            <h1 class="font-display text-3xl md:text-5xl font-bold mt-3">${data.title}</h1>
+            <p class="text-txt2 mt-4 leading-relaxed">${data.description}</p>
+            <div class="flex flex-wrap gap-2 mt-5">${tagsHTML}</div>
+          </div>`;
+
+        let gridHTML;
+        if (shots.length === 0) {
+          gridHTML = `
+            <div class="mt-16 rounded-2xl border border-dashed border-white/15 py-16 text-center">
+              <i class="fa-solid fa-images text-3xl text-txt2"></i>
+              <p class="text-txt2 mt-4 font-mono text-sm">No screenshots added for this project yet.</p>
+            </div>`;
+        } else {
+          gridHTML = `
+            <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              ${shots
+                .map(
+                  (s, i) => `
+                <figure
+                  class="group rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03] cursor-pointer"
+                  data-index="${i}"
+                >
+                  <div class="aspect-video overflow-hidden bg-bg2">
+                    <img
+                      src="${s.src}"
+                      alt="${(s.caption || data.title).replace(/"/g, "&quot;")}"
+                      loading="lazy"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                 
+                </figure>`
+                )
+                .join("")}
+            </div>`;
+        }
+
+        app.innerHTML = header + gridHTML;
+
+        // ---- Lightbox wiring ----
+        if (shots.length) {
+          const lightbox = document.getElementById("lightbox");
+          const imgEl = document.getElementById("lightbox-img");
+          const capEl = document.getElementById("lightbox-caption");
+          let current = 0;
+
+          const open = (i) => {
+            current = i;
+            imgEl.src = shots[i].src;
+            imgEl.alt = shots[i].caption || data.title;
+            capEl.textContent = shots[i].caption || "";
+            lightbox.classList.remove("hidden");
+            lightbox.classList.add("flex");
+          };
+          const close = () => {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+          };
+          const step = (delta) => {
+            current = (current + delta + shots.length) % shots.length;
+            open(current);
+          };
+
+          app.querySelectorAll("[data-index]").forEach((fig) => {
+            fig.addEventListener("click", () => open(parseInt(fig.dataset.index, 10)));
+          });
+          document.getElementById("lightbox-close").addEventListener("click", close);
+          document.getElementById("lightbox-prev").addEventListener("click", () => step(-1));
+          document.getElementById("lightbox-next").addEventListener("click", () => step(1));
+          lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) close();
+          });
+          document.addEventListener("keydown", (e) => {
+            if (lightbox.classList.contains("hidden")) return;
+            if (e.key === "Escape") close();
+            if (e.key === "ArrowLeft") step(-1);
+            if (e.key === "ArrowRight") step(1);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

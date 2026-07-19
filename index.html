@@ -1,0 +1,1533 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohamad Asmal — Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Mohamad Asmal — aspiring Software Engineer specializing in the MERN stack. Higher Diploma in Software Engineering, full-stack projects, and hands-on development experience."
+    />
+    <meta name="theme-color" content="#050816" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Tailwind (CDN, utility-only — no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#050816",
+              bg2: "#0F172A",
+              a1: "#38BDF8",
+              a2: "#7C3AED",
+              a3: "#06B6D4",
+              txt2: "#94A3B8",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+              sans: ["Inter", "ui-sans-serif", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-bg text-white antialiased selection:bg-a2">
+    <!-- ============ LOADING SCREEN ============ -->
+    <div id="loader" aria-hidden="true">
+      <div class="loader-bracket font-mono">
+        <span>&lt;</span>Mohamad Asmal<span>/&gt;</span>
+      </div>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+      <p class="text-txt2 font-mono text-xs tracking-widest">
+        COMPILING PORTFOLIO…
+      </p>
+    </div>
+
+    <!-- ============ SCROLL PROGRESS ============ -->
+    <div id="scroll-progress"></div>
+
+    <!-- ============ CURSOR FX (desktop only) ============ -->
+    <div id="cursor-glow" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+    <div id="cursor-dot" aria-hidden="true"></div>
+
+    <!-- ============ AMBIENT BACKGROUND ============ -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="noise-vignette" aria-hidden="true"></div>
+
+    <!-- ============ NAVBAR ============ -->
+    <header
+      id="navbar"
+      class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-[72px]"
+      >
+        <a
+          href="#home"
+          class="font-display font-bold text-xl tracking-tight flex items-center gap-2 group"
+        >
+          <span
+            class="w-10 h-10 rounded-xl border border-a1/40 flex items-center justify-center font-mono text-a1 glow-1 group-hover:scale-110 transition-transform"
+            >MA</span
+          >
+          <span class="hidden sm:inline text-white/90"
+            >Sperz<span class="text-a1">X</span>.code</span
+          >
+        </a>
+
+        <ul
+          class="hidden md:flex items-center gap-8 font-mono text-[13px] tracking-wide text-txt2"
+        >
+          <li>
+            <a
+              href="#home"
+              data-link="home"
+              class="nav-link hover:text-white transition-colors"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              data-link="about"
+              class="nav-link hover:text-white transition-colors"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              data-link="skills"
+              class="nav-link hover:text-white transition-colors"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experience"
+              data-link="experience"
+              class="nav-link hover:text-white transition-colors"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a
+              href="#education"
+              data-link="education"
+              class="nav-link hover:text-white transition-colors"
+              >Education</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              data-link="projects"
+              class="nav-link hover:text-white transition-colors"
+              >Projects</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="#certifications"
+              data-link="certifications"
+              class="nav-link hover:text-white transition-colors"
+              >Certs</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              data-link="contact"
+              class="nav-link hover:text-white transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a
+            href="https://www.linkedin.com/in/mohammed-asmal-824453318/"
+            title="LinkedIn — add your profile URL"
+            aria-label="LinkedIn"
+            class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-txt2 hover:text-a1 hover:border-a1/50 hover:glow-1 transition-all"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+          <a
+            href="https://github.com/MohammedAshmal"
+            title="GitHub — add your profile URL"
+            aria-label="GitHub"
+            class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-txt2 hover:text-a1 hover:border-a1/50 hover:glow-1 transition-all"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="mailto:mohammedasmal120@gmail.com"
+            aria-label="Email"
+            class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-txt2 hover:text-a1 hover:border-a1/50 hover:glow-1 transition-all"
+            ><i class="fa-solid fa-envelope"></i
+          ></a>
+        </div>
+
+        <button
+          id="menu-btn"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          class="md:hidden w-10 h-10 flex items-center justify-center text-white"
+        >
+          <i id="icon-open" class="fa-solid fa-bars text-xl"></i>
+          <i id="icon-close" class="fa-solid fa-xmark text-xl hidden"></i>
+        </button>
+      </nav>
+
+      <div id="mobile-menu" class="md:hidden glass mx-4 rounded-2xl">
+        <ul class="flex flex-col gap-1 p-4 font-mono text-sm text-txt2">
+          <li>
+            <a
+              href="#home"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experience"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a
+              href="#education"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Education</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="#certifications"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Certifications</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="block py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white"
+              >Contact</a
+            >
+          </li>
+          <li class="flex gap-4 pt-2 px-3">
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              class="text-lg text-txt2 hover:text-a1"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              class="text-lg text-txt2 hover:text-a1"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a
+              href="mailto:mohammedasmal120@gmail.com"
+              aria-label="Email"
+              class="text-lg text-txt2 hover:text-a1"
+              ><i class="fa-solid fa-envelope"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="relative z-10">
+      <!-- ============ HERO ============ -->
+      <section
+        id="home"
+        class="relative min-h-screen flex items-center pt-28 pb-16 px-5 md:px-8 overflow-hidden"
+      >
+        <div
+          class="blob w-[420px] h-[420px] bg-a1 top-10 -left-20"
+          data-parallax="18"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="blob w-[380px] h-[380px] bg-a2 bottom-0 right-0"
+          data-parallax="26"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="max-w-7xl mx-auto w-full grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center relative"
+        >
+          <div>
+            <p class="eyebrow reveal" style="--d: 0ms">
+              AVAILABLE FOR OPPORTUNITIES
+            </p>
+
+            <h1
+              class="font-display font-bold leading-[1.05] mt-5 reveal"
+              style="--d: 80ms"
+            >
+              <span
+                class="block text-2xl md:text-3xl text-txt2 font-medium mb-2"
+                >Hi, I'm</span
+              >
+              <span class="block text-5xl md:text-7xl grad-text"
+                >Mohamad Asmal</span
+              >
+            </h1>
+
+            <div
+              class="mt-5 font-mono text-lg md:text-2xl text-a1 h-9 reveal"
+              style="--d: 160ms"
+            >
+              <span id="typing-role"></span><span class="type-cursor"></span>
+            </div>
+
+            <p
+              class="mt-6 text-txt2 text-base md:text-lg leading-relaxed max-w-xl reveal"
+              style="--d: 240ms"
+            >
+              Aspiring Software Engineer specializing in modern web development
+              with a strong focus on the MERN stack. Skilled in building
+              responsive, user-friendly applications and solving real-world
+              problems through clean, efficient code — recently completed a
+              Higher Diploma in Software Engineering.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-4 reveal" style="--d: 320ms">
+              <a
+                href="Asmal's CV.pdf"
+                download="Asmal's CV.pdf"
+                class="ripple btn-neon glow-1 rounded-full px-6 py-3 font-mono text-sm font-medium flex items-center gap-2 bg-white/5"
+              >
+                <i class="fa-solid fa-download"></i> Download CV
+              </a>
+              <a
+                href="#projects"
+                class="ripple btn-neon rounded-full px-6 py-3 font-mono text-sm font-medium flex items-center gap-2 bg-white/5"
+              >
+                <i class="fa-solid fa-code"></i> View Projects
+              </a>
+              <a
+                href="#contact"
+                class="ripple rounded-full px-6 py-3 font-mono text-sm font-medium flex items-center gap-2 border border-white/10 text-txt2 hover:text-white hover:border-white/30 transition-colors"
+              >
+                <i class="fa-solid fa-paper-plane"></i> Contact Me
+              </a>
+            </div>
+
+            <div
+              class="mt-12 grid grid-cols-3 gap-6 max-w-md reveal"
+              style="--d: 400ms"
+            >
+              <div>
+                <p class="font-display text-3xl font-bold text-white">
+                  <span class="counter" data-target="6">0</span>+
+                </p>
+                <p class="text-xs text-txt2 font-mono mt-1">Projects Built</p>
+              </div>
+              <div>
+                <p class="font-display text-3xl font-bold text-white">
+                  <span class="counter" data-target="3">0</span>
+                </p>
+                <p class="text-xs text-txt2 font-mono mt-1">Languages Spoken</p>
+              </div>
+              <div>
+                <p class="font-display text-3xl font-bold text-white">
+                  <span class="counter" data-target="3">0</span>+
+                </p>
+                <p class="text-xs text-txt2 font-mono mt-1">Yrs Design Exp.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terminal / coding workspace illustration -->
+          <div
+            class="relative reveal reveal-zoom"
+            style="--d: 200ms"
+            data-parallax="12"
+          >
+            <div
+              class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-a1/20 via-a2/10 to-transparent blur-2xl"
+              aria-hidden="true"
+            ></div>
+            <div
+              class="terminal relative p-5 md:p-6 font-mono text-[13px] leading-relaxed"
+            >
+              <div class="flex items-center gap-2 mb-4">
+                <span class="terminal-dot bg-rose-400/80"></span>
+                <span class="terminal-dot bg-amber-400/80"></span>
+                <span class="terminal-dot bg-emerald-400/80"></span>
+                <span class="ml-3 text-txt2 text-xs"
+                  >mohamad@dev ~ portfolio</span
+                >
+              </div>
+              <pre
+                class="text-txt2 whitespace-pre-wrap"
+              ><span class="text-a2">const</span> <span class="text-a1">engineer</span> = {
+  name: <span class="text-emerald-300">'Mohamad Asmal'</span>,
+  role: <span class="text-emerald-300">'Intern · Software Engineer'</span>,
+  stack: [<span class="text-emerald-300">'React'</span>, <span class="text-emerald-300">'Node.js'</span>, <span class="text-emerald-300">'Express'</span>, <span class="text-emerald-300">'MongoDB'</span>],
+  education: <span class="text-emerald-300">'Higher Diploma — Software Engineering'</span>,
+  status: <span class="text-a1">buildSomethingGreat</span>()
+};</pre>
+              <div
+                class="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-a1"
+              >
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+                <span class="text-white/80">npm run</span
+                ><span>&nbsp;career --watch</span>
+              </div>
+            </div>
+
+            <!-- floating icons -->
+            <div
+              class="float-icon absolute -top-6 -right-4 w-14 h-14 rounded-2xl glass flex items-center justify-center text-a1 text-xl glow-1"
+              style="animation-delay: 0s"
+            >
+              <i class="fa-brands fa-react"></i>
+            </div>
+            <div
+              class="float-icon absolute -bottom-6 left-4 w-14 h-14 rounded-2xl glass flex items-center justify-center text-a3 text-xl glow-1"
+              style="animation-delay: 1.4s"
+            >
+              <i class="fa-brands fa-node-js"></i>
+            </div>
+            <div
+              class="float-icon absolute top-1/3 -left-8 w-12 h-12 rounded-xl glass flex items-center justify-center text-a2 text-lg"
+              style="animation-delay: 2.4s"
+            >
+              <i class="fa-solid fa-database"></i>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="#about"
+          class="absolute bottom-6 left-1/2 -translate-x-1/2 text-txt2 hover:text-a1 transition-colors"
+          aria-label="Scroll to About"
+        >
+          <i class="fa-solid fa-chevron-down animate-bounce"></i>
+        </a>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section id="about" class="relative py-28 px-5 md:px-8">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">ABOUT ME</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Turning ideas into <span class="grad-text">working software</span>
+            </h2>
+          </div>
+
+          <div class="mt-16 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+            <div class="reveal reveal-left">
+              <div
+                class="border-glow p-[2px] rounded-2xl w-fit mx-auto lg:mx-0"
+              >
+                <div
+                  class="rounded-2xl overflow-hidden w-64 h-84 md:w-72 md:h-83 glass"
+                >
+                  <img
+                    src="Ashmal.JPEG"
+                    alt="Portrait of Mohamad Asmal"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div
+                class="glass rounded-2xl p-5 mt-6 space-y-3 font-mono text-xs text-txt2"
+              >
+                <p class="flex items-center gap-3">
+                  <i class="fa-solid fa-location-dot text-a1 w-4"></i>
+                  Polonnaruwa, Sri Lanka
+                </p>
+                <p class="flex items-center gap-3">
+                  <i class="fa-solid fa-envelope text-a1 w-4"></i>
+                  mohammedasmal120@gmail.com
+                </p>
+                <p class="flex items-center gap-3">
+                  <i class="fa-solid fa-phone text-a1 w-4"></i> +94 78 581 8036
+                  / +94 76 111 7411
+                </p>
+              </div>
+            </div>
+
+            <div class="reveal reveal-right">
+              <div class="glass glass-hover rounded-2xl p-8">
+                <h3 class="font-display text-xl font-semibold mb-3 text-white">
+                  Career objective
+                </h3>
+                <p class="text-txt2 leading-relaxed">
+                  Aspiring Software Engineer specializing in modern web
+                  development with a strong focus on the MERN stack. Skilled in
+                  building responsive, user-friendly applications and solving
+                  real-world problems through clean and efficient code. Recently
+                  completed a Higher Diploma in Software Engineering and
+                  currently enhancing expertise in full-stack development, API
+                  integration, and scalable web solutions.
+                </p>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-5 mt-6">
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <i
+                    class="fa-solid fa-graduation-cap text-a1 text-xl mb-3"
+                  ></i>
+                  <h4 class="font-display font-semibold mb-1">Background</h4>
+                  <p class="text-txt2 text-sm leading-relaxed">
+                    Higher Diploma in Computing & Software Engineering from
+                    Cardiff Metropolitan University (2023–2025), building on a
+                    foundation from school in Polonnaruwa.
+                  </p>
+                </div>
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <i class="fa-solid fa-palette text-a1 text-xl mb-3"></i>
+                  <h4 class="font-display font-semibold mb-1">
+                    Design background
+                  </h4>
+                  <p class="text-txt2 text-sm leading-relaxed">
+                    Worked as a Graphic Designer at Haani ADS, crafting flex
+                    banners, logos and promotional materials — a creative edge
+                    behind every interface.
+                  </p>
+                </div>
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <i class="fa-solid fa-users text-a1 text-xl mb-3"></i>
+                  <h4 class="font-display font-semibold mb-1">
+                    Community involvement
+                  </h4>
+                  <p class="text-txt2 text-sm leading-relaxed">
+                    Active in student and community life — management staff at
+                    Al Hudha Sports Club, chief designer for the Sungavil
+                    Undergraduate Network, and a former school prefect.
+                  </p>
+                </div>
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <i class="fa-solid fa-language text-a1 text-xl mb-3"></i>
+                  <h4 class="font-display font-semibold mb-1">Languages</h4>
+                  <p class="text-txt2 text-sm leading-relaxed">
+                    Fluent in Tamil and Sinhala, with working proficiency in
+                    English for technical communication.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <section id="skills" class="relative py-28 px-5 md:px-8 bg-bg2/40">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">SKILLS</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Tools I build with
+            </h2>
+          </div>
+
+          <div
+            class="mt-16 grid md:grid-cols-2 xl:grid-cols-4 gap-6"
+            id="skills-grid"
+          >
+            <!-- Frontend -->
+            <div
+              class="glass glass-hover rounded-2xl p-6 reveal"
+              style="--d: 0ms"
+            >
+              <h3
+                class="font-display font-semibold text-a1 mb-5 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-display"></i> Frontend
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>HTML5</span
+                    ><span class="text-txt2 font-mono">90%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="90"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>CSS3</span
+                    ><span class="text-txt2 font-mono">88%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="88"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>JavaScript</span
+                    ><span class="text-txt2 font-mono">65%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="65"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>React</span
+                    ><span class="text-txt2 font-mono">55%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="55"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Backend -->
+            <div
+              class="glass glass-hover rounded-2xl p-6 reveal"
+              style="--d: 80ms"
+            >
+              <h3
+                class="font-display font-semibold text-a2 mb-5 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-server"></i> Backend
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>Node.js &amp; Express</span
+                    ><span class="text-txt2 font-mono">40%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="40"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>PHP</span><span class="text-txt2 font-mono">80%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="80"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>C# / .NET</span
+                    ><span class="text-txt2 font-mono">70%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="70"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Database -->
+            <div
+              class="glass glass-hover rounded-2xl p-6 reveal"
+              style="--d: 160ms"
+            >
+              <h3
+                class="font-display font-semibold text-a3 mb-5 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-database"></i> Database
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>MySQL</span
+                    ><span class="text-txt2 font-mono">85%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="85"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>MongoDB</span
+                    ><span class="text-txt2 font-mono">65%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="65"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>Database Management</span
+                    ><span class="text-txt2 font-mono">78%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="78"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Design Tools -->
+            <div
+              class="glass glass-hover rounded-2xl p-6 reveal"
+              style="--d: 240ms"
+            >
+              <h3
+                class="font-display font-semibold text-a1 mb-5 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-swatchbook"></i> Design Tools
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>Adobe Photoshop</span
+                    ><span class="text-txt2 font-mono">95%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="95"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>CorelDRAW</span
+                    ><span class="text-txt2 font-mono">45%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="45"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1.5">
+                    <span>Adobe Ilustator</span
+                    ><span class="text-txt2 font-mono">45%</span>
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-level="45"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft skills chips -->
+          <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+            <span class="font-mono text-xs text-txt2 self-center mr-2"
+              >Also:</span
+            >
+            <span class="px-4 py-2 rounded-full glass text-sm text-white/80"
+              >Quick Learning</span
+            >
+            <span class="px-4 py-2 rounded-full glass text-sm text-white/80"
+              >Problem Solving</span
+            >
+            <span class="px-4 py-2 rounded-full glass text-sm text-white/80"
+              >Teamwork</span
+            >
+            <span class="px-4 py-2 rounded-full glass text-sm text-white/80"
+              >Time Management</span
+            >
+            <span class="px-4 py-2 rounded-full glass text-sm text-white/80"
+              >Event Coordination</span
+            >
+            <span class="px-4 py-2 rounded-full glass text-sm text-white/80"
+              >Adaptability</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EXPERIENCE ============ -->
+      <section id="experience" class="relative py-28 px-5 md:px-8">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">WORK EXPERIENCE</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Where I've worked
+            </h2>
+          </div>
+
+          <div class="relative mt-16 max-w-3xl mx-auto pl-10 md:pl-0">
+            <div class="timeline-line"></div>
+
+            <div
+              class="relative md:grid md:grid-cols-2 md:gap-10 mb-4 reveal reveal-left"
+            >
+              <div class="timeline-dot"></div>
+              <div class="md:text-right md:pr-10">
+                <div
+                  class="glass glass-hover rounded-2xl p-6 inline-block text-left"
+                >
+                  <span class="font-mono text-xs text-a1">2022 — 2024</span>
+                  <h3 class="font-display text-lg font-semibold mt-1">
+                    Graphic Designer
+                  </h3>
+                  <p class="text-txt2 text-sm mt-1">
+                    Haani ADS · Polonnaruwa, Sri Lanka
+                  </p>
+                  <p class="text-txt2 text-sm mt-3 leading-relaxed">
+                    Designed flex banners, logos, stickers, and promotional
+                    materials to support branding and marketing campaigns.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block"></div>
+            </div>
+
+            <div
+              class="relative md:grid md:grid-cols-2 md:gap-10 reveal reveal-right"
+            >
+              <div class="timeline-dot"></div>
+              <div class="md:pr-10"></div>
+              <div class="md:pl-10">
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <span class="font-mono text-xs text-a1">2024 — Present</span>
+                  <h3 class="font-display text-lg font-semibold mt-1">
+                    Freelance Graphic Designer &amp; Web Developer
+                  </h3>
+                  <p class="text-txt2 text-sm mt-1">Self-employed</p>
+                  <p class="text-txt2 text-sm mt-3 leading-relaxed">
+                    Working as a freelancer, taking on graphic design and web
+                    development work for academic projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EDUCATION ============ -->
+      <section id="education" class="relative py-28 px-5 md:px-8 bg-bg2/40">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">EDUCATION</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Academic timeline
+            </h2>
+          </div>
+
+          <div class="relative mt-16 max-w-3xl mx-auto pl-10 md:pl-0">
+            <div class="timeline-line"></div>
+
+            <div
+              class="relative md:grid md:grid-cols-2 md:gap-10 mb-10 reveal reveal-left"
+            >
+              <div class="timeline-dot"></div>
+              <div class="md:pr-10"></div>
+              <div class="md:pl-10">
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <span class="font-mono text-xs text-a1">2019</span>
+                  <h3 class="font-display text-lg font-semibold mt-1">
+                    Ordinary Level (O/L)
+                  </h3>
+                  <p class="text-txt2 text-sm mt-1">
+                    Pl/Muslim N.S · Polonnaruwa, Sri Lanka
+                  </p>
+                  <p class="text-txt2 text-sm mt-3 leading-relaxed">
+                    Successfully completed the Ordinary Level examination.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="relative md:grid md:grid-cols-2 md:gap-10 mb-10 reveal reveal-right"
+            >
+              <div class="timeline-dot"></div>
+              <div class="md:text-right md:pr-10">
+                <div
+                  class="glass glass-hover rounded-2xl p-6 inline-block text-left"
+                >
+                  <span class="font-mono text-xs text-a1">2023</span>
+                  <h3 class="font-display text-lg font-semibold mt-1">
+                    Advanced Level (A/L)
+                  </h3>
+                  <p class="text-txt2 text-sm mt-1">
+                    Pl/Al-Hilal C.C · Polonnaruwa, Sri Lanka
+                  </p>
+                  <p class="text-txt2 text-sm mt-3 leading-relaxed">
+                    Successfully completed the Advanced Level examination.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block"></div>
+            </div>
+
+            <div
+              class="relative md:grid md:grid-cols-2 md:gap-10 reveal reveal-left"
+            >
+              <div class="timeline-dot"></div>
+              <div class="md:pr-10"></div>
+              <div class="md:pl-10">
+                <div class="glass glass-hover rounded-2xl p-6">
+                  <span class="font-mono text-xs text-a1">2023 — 2025</span>
+                  <h3 class="font-display text-lg font-semibold mt-1">
+                    Higher Diploma in Computing & Software Engineering
+                  </h3>
+                  <p class="text-txt2 text-sm mt-1">
+                    Cardiff Metropolitan University
+                  </p>
+                  <p class="text-txt2 text-sm mt-3 leading-relaxed">
+                    Successfully completed a Higher Diploma in Computing and
+                    Software Engineering.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROJECTS ============ -->
+      <section id="projects" class="relative py-28 px-5 md:px-8">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">PROJECTS</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Things I've built
+            </h2>
+          </div>
+
+          <div class="mt-16 grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+            <article
+              class="project-card glass glass-hover rounded-2xl overflow-hidden reveal"
+              style="--d: 0ms"
+            >
+              <div class="h-40 relative overflow-hidden group/thumb">
+                <a
+                  href="gallery.html?project=cricket-scoring-app"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Cricket Scoring App screenshots"
+                  class="absolute inset-0 block"
+                >
+                  <div
+                    data-project-thumb="cricket-scoring-app"
+                    class="absolute inset-0 bg-bg2 [&_img]:transition-transform [&_img]:duration-500 group-hover/thumb:[&_img]:scale-105"
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors flex items-end justify-center pb-3"
+                  >
+                    <span
+                      class="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all text-[11px] font-mono tracking-wide text-white bg-black/60 backdrop-blur px-3 py-1.5 rounded-full"
+                    >
+                      <i class="fa-solid fa-images mr-1.5"></i>View Screenshots
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display font-semibold text-lg">
+                  Cricket Scoring App
+                </h3>
+                <p class="text-txt2 text-sm mt-2 leading-relaxed">
+                  A Windows Forms app built for OBS live streaming to track
+                  runs, wickets, overs, and bowlers, and generate match reports.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >C#</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card glass glass-hover rounded-2xl overflow-hidden reveal"
+              style="--d: 80ms"
+            >
+              <div class="h-40 relative overflow-hidden group/thumb">
+                <a
+                  href="gallery.html?project=book-hive"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Book Hive screenshots"
+                  class="absolute inset-0 block"
+                >
+                  <div
+                    data-project-thumb="book-hive"
+                    class="absolute inset-0 bg-bg2 [&_img]:transition-transform [&_img]:duration-500 group-hover/thumb:[&_img]:scale-105"
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors flex items-end justify-center pb-3"
+                  >
+                    <span
+                      class="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all text-[11px] font-mono tracking-wide text-white bg-black/60 backdrop-blur px-3 py-1.5 rounded-full"
+                    >
+                      <i class="fa-solid fa-images mr-1.5"></i>View Screenshots
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display font-semibold text-lg">Book Hive</h3>
+                <p class="text-txt2 text-sm mt-2 leading-relaxed">
+                  A web platform for authors to upload and manage books, and for
+                  readers to buy, save, and track their reading activity.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >HTML</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >CSS</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >PHP</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >MySQL</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >JS</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card glass glass-hover rounded-2xl overflow-hidden reveal"
+              style="--d: 160ms"
+            >
+              <div class="h-40 relative overflow-hidden group/thumb">
+                <a
+                  href="gallery.html?project=gym-web-application"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Gym Web Application screenshots"
+                  class="absolute inset-0 block"
+                >
+                  <div
+                    data-project-thumb="gym-web-application"
+                    class="absolute inset-0 bg-bg2 [&_img]:transition-transform [&_img]:duration-500 group-hover/thumb:[&_img]:scale-105"
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors flex items-end justify-center pb-3"
+                  >
+                    <span
+                      class="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all text-[11px] font-mono tracking-wide text-white bg-black/60 backdrop-blur px-3 py-1.5 rounded-full"
+                    >
+                      <i class="fa-solid fa-images mr-1.5"></i>View Screenshots
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display font-semibold text-lg">
+                  Gym Web Application
+                </h3>
+                <p class="text-txt2 text-sm mt-2 leading-relaxed">
+                  A system for customers to register, select trainers, and book
+                  sessions, while admins manage users, classes, and
+                  appointments.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >HTML</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >CSS</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >PHP</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >MySQL</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >JS</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card glass glass-hover rounded-2xl overflow-hidden reveal"
+              style="--d: 0ms"
+            >
+              <div class="h-40 relative overflow-hidden group/thumb">
+                <a
+                  href="gallery.html?project=the-gadget-hub"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View The Gadget Hub screenshots"
+                  class="absolute inset-0 block"
+                >
+                  <div
+                    data-project-thumb="the-gadget-hub"
+                    class="absolute inset-0 bg-bg2 [&_img]:transition-transform [&_img]:duration-500 group-hover/thumb:[&_img]:scale-105"
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors flex items-end justify-center pb-3"
+                  >
+                    <span
+                      class="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all text-[11px] font-mono tracking-wide text-white bg-black/60 backdrop-blur px-3 py-1.5 rounded-full"
+                    >
+                      <i class="fa-solid fa-images mr-1.5"></i>View Screenshots
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display font-semibold text-lg">
+                  The Gadget Hub
+                </h3>
+                <p class="text-txt2 text-sm mt-2 leading-relaxed">
+                  Distributor APIs and a main system to handle quotations,
+                  compare prices, and place best-value orders.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >.NET</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >MySQL</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card glass glass-hover rounded-2xl overflow-hidden reveal"
+              style="--d: 80ms"
+            >
+              <div class="h-40 relative overflow-hidden group/thumb">
+                <a
+                  href="gallery.html?project=grocery-store"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Grocery Store screenshots"
+                  class="absolute inset-0 block"
+                >
+                  <div
+                    data-project-thumb="grocery-store"
+                    class="absolute inset-0 bg-bg2 [&_img]:transition-transform [&_img]:duration-500 group-hover/thumb:[&_img]:scale-105"
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors flex items-end justify-center pb-3"
+                  >
+                    <span
+                      class="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all text-[11px] font-mono tracking-wide text-white bg-black/60 backdrop-blur px-3 py-1.5 rounded-full"
+                    >
+                      <i class="fa-solid fa-images mr-1.5"></i>View Screenshots
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display font-semibold text-lg">
+                  Grocery Store
+                </h3>
+                <p class="text-txt2 text-sm mt-2 leading-relaxed">
+                  A grocery store web application built to manage products and
+                  customer orders.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >PHP</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >MySQL</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >HTML</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >CSS</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >JS</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card glass glass-hover rounded-2xl overflow-hidden reveal"
+              style="--d: 160ms"
+            >
+              <div class="h-40 relative overflow-hidden group/thumb">
+                <a
+                  href="gallery.html?project=e-commerce-web"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View E-Commerce Web screenshots"
+                  class="absolute inset-0 block"
+                >
+                  <div
+                    data-project-thumb="e-commerce-web"
+                    class="absolute inset-0 bg-bg2 [&_img]:transition-transform [&_img]:duration-500 group-hover/thumb:[&_img]:scale-105"
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-colors flex items-end justify-center pb-3"
+                  >
+                    <span
+                      class="opacity-0 group-hover/thumb:opacity-100 translate-y-1 group-hover/thumb:translate-y-0 transition-all text-[11px] font-mono tracking-wide text-white bg-black/60 backdrop-blur px-3 py-1.5 rounded-full"
+                    >
+                      <i class="fa-solid fa-images mr-1.5"></i>View Screenshots
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display font-semibold text-lg">
+                  E-Commerce Web
+                </h3>
+                <p class="text-txt2 text-sm mt-2 leading-relaxed">
+                  Learning MERN stack development by building an e-commerce web
+                  application end to end.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >React</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >Node.js</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >Express</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-a1"
+                    >MongoDB</span
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+     
+        </div>
+      </section>
+
+
+      <!-- ============ CERTIFICATIONS ============ -->
+      <section
+        id="certifications"
+        class="relative py-28 px-5 md:px-8 bg-bg2/40"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">CERTIFICATIONS</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Credentials
+            </h2>
+          </div>
+
+          <div class="mt-16 max-w-md mx-auto">
+            <div
+              class="glass glass-hover rounded-2xl p-7 reveal reveal-zoom flex items-start gap-5"
+            >
+              <div
+                class="w-14 h-14 shrink-0 rounded-xl bg-a1/10 border border-a1/30 flex items-center justify-center text-2xl text-a1 glow-1"
+              >
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-lg">
+                  JavaScript Algorithms &amp; Data Structures
+                </h3>
+                <p class="text-txt2 text-sm mt-1">FreeCodeCamp</p>
+                <p class="text-txt2 text-xs mt-3 leading-relaxed">
+                  Certification curriculum covering JavaScript algorithms and
+                  data structures.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact" class="relative py-28 px-5 md:px-8">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow justify-center flex">CONTACT</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+              Let's build something together
+            </h2>
+            <p class="text-txt2 mt-4">
+              Have a role, project, or idea in mind? My inbox is open.
+            </p>
+          </div>
+
+          <div class="mt-16 grid lg:grid-cols-[0.9fr_1.1fr] gap-8">
+            <div class="space-y-5 reveal reveal-left">
+              <a
+                href="mailto:mohammedasmal120@gmail.com"
+                class="glass glass-hover rounded-2xl p-6 flex items-center gap-4 group"
+              >
+                <span
+                  class="w-12 h-12 rounded-xl bg-a1/10 border border-a1/30 flex items-center justify-center text-a1"
+                  ><i class="fa-solid fa-envelope"></i
+                ></span>
+                <span>
+                  <span class="block text-xs text-txt2 font-mono">EMAIL</span>
+                  <span
+                    class="block text-white group-hover:text-a1 transition-colors"
+                    >mohammedasmal120@gmail.com</span
+                  >
+                </span>
+              </a>
+              <a
+                href="tel:+94785818036"
+                class="glass glass-hover rounded-2xl p-6 flex items-center gap-4 group"
+              >
+                <span
+                  class="w-12 h-12 rounded-xl bg-a2/10 border border-a2/30 flex items-center justify-center text-a2"
+                  ><i class="fa-solid fa-phone"></i
+                ></span>
+                <span>
+                  <span class="block text-xs text-txt2 font-mono">PHONE</span>
+                  <span
+                    class="block text-white group-hover:text-a2 transition-colors"
+                    >+94 78 581 8036 / +94 76 111 7411</span
+                  >
+                </span>
+              </a>
+              <div
+                class="glass glass-hover rounded-2xl p-6 flex items-center gap-4"
+              >
+                <span
+                  class="w-12 h-12 rounded-xl bg-a3/10 border border-a3/30 flex items-center justify-center text-a3"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+                <span>
+                  <span class="block text-xs text-txt2 font-mono"
+                    >LOCATION</span
+                  >
+                  <span class="block text-white">Polonnaruwa, Sri Lanka</span>
+                </span>
+              </div>
+              <div class="flex gap-4 pt-2">
+                <a
+                  href="https://www.linkedin.com/in/mohammed-asmal-824453318/"
+                  title="LinkedIn"
+                  class="w-12 h-12 rounded-xl glass flex items-center justify-center text-txt2 hover:text-a1 hover:glow-1 transition-all"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a
+                  href="https://github.com/MohammedAshmal"
+                  title="GitHub"
+                  class="w-12 h-12 rounded-xl glass flex items-center justify-center text-txt2 hover:text-a1 hover:glow-1 transition-all"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
+
+            <form
+              id="contact-form"
+              class="glass rounded-2xl p-7 md:p-8 reveal reveal-right"
+              novalidate
+            >
+              <input type="hidden" name="_subject" value="New message from your portfolio" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label
+                    for="f-name"
+                    class="block text-xs font-mono text-txt2 mb-2"
+                    >NAME</label
+                  >
+                  <input
+                    id="f-name"
+                    name="name"
+                    type="text"
+                    required
+                    class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-a1 outline-none transition-colors"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="f-email"
+                    class="block text-xs font-mono text-txt2 mb-2"
+                    >EMAIL</label
+                  >
+                  <input
+                    id="f-email"
+                    name="email"
+                    type="email"
+                    required
+                    class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-a1 outline-none transition-colors"
+                    placeholder="you@example.com"
+                  />
+                </div>
+              </div>
+              <div class="mt-5">
+                <label
+                  for="f-message"
+                  class="block text-xs font-mono text-txt2 mb-2"
+                  >MESSAGE</label
+                >
+                <textarea
+                  id="f-message"
+                  name="message"
+                  rows="5"
+                  required
+                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-a1 outline-none transition-colors resize-none"
+                  placeholder="Tell me about the opportunity or project…"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="ripple btn-neon glow-1 mt-6 w-full rounded-lg px-6 py-3.5 font-mono text-sm font-medium bg-white/5"
+              >
+                <i class="fa-solid fa-paper-plane mr-2"></i>Send Message
+              </button>
+              <p id="form-status" class="text-sm mt-3"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="relative z-10 border-t border-white/10 py-10 px-5 md:px-8">
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <p class="font-mono text-xs text-txt2">
+          © <span id="year"></span> Mohamad Asmal. Designed &amp; developed by
+          SperzX.code.
+        </p>
+        <div class="flex gap-4">
+          <a
+            href="https://www.linkedin.com/in/mohammed-asmal-824453318/"
+            title="LinkedIn"
+            class="w-10 h-10 rounded-full glass flex items-center justify-center text-txt2 hover:text-a1 hover:glow-1 transition-all"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+          <a
+            href="https://github.com/MohammedAshma"
+            title="GitHub"
+            class="w-10 h-10 rounded-full glass flex items-center justify-center text-txt2 hover:text-a1 hover:glow-1 transition-all"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="mailto:mohammedasmal120@gmail.com"
+            class="w-10 h-10 rounded-full glass flex items-center justify-center text-txt2 hover:text-a1 hover:glow-1 transition-all"
+            ><i class="fa-solid fa-envelope"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============ BACK TO TOP ============ -->
+    <button
+      id="back-to-top"
+      aria-label="Back to top"
+      class="glass text-a1 hover:glow-1 hover:text-white transition-all"
+    >
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // navbar solid-on-scroll styling (kept inline for critical-path simplicity)
+      document.addEventListener("DOMContentLoaded", () => {
+        const style = document.createElement("style");
+        style.textContent = `#navbar.nav-solid{background:rgba(5,8,22,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(148,163,184,0.12);}`;
+        document.head.appendChild(style);
+      });
+    </script>
+    <script src="projects-data.js"></script>
+    <script>
+      // Build a thumbnail collage (first 2–3 screenshots) for each project
+      // card from projects-data.js. Falls back to a plain dark tile if a
+      // project has no screenshots listed yet — no icon shown either way.
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("[data-project-thumb]").forEach((el) => {
+          const slug = el.dataset.projectThumb;
+          const proj = window.PROJECTS && window.PROJECTS[slug];
+          const shots = ((proj && proj.screenshots) || []).slice(0, 3);
+          const title = (proj && proj.title) || slug;
+
+          if (shots.length === 0) {
+            el.innerHTML = `
+              <div class="w-full h-full flex items-center justify-center bg-bg2">
+                <span class="text-[11px] font-mono text-txt2 tracking-wide">Screenshots coming soon</span>
+              </div>`;
+          } else if (shots.length === 1) {
+            el.innerHTML = `<img src="${shots[0].src}" alt="${title}" loading="lazy" class="w-full h-full object-cover" />`;
+          } else if (shots.length === 2) {
+            el.innerHTML = `
+              <div class="grid grid-cols-2 gap-[2px] w-full h-full">
+                <img src="${shots[0].src}" alt="${title}" loading="lazy" class="w-full h-full object-cover" />
+                <img src="${shots[1].src}" alt="${title}" loading="lazy" class="w-full h-full object-cover" />
+              </div>`;
+          } else {
+            el.innerHTML = `
+              <div class="grid grid-cols-2 grid-rows-2 gap-[2px] w-full h-full">
+                <img src="${shots[0].src}" alt="${title}" loading="lazy" class="row-span-2 w-full h-full object-cover" />
+                <img src="${shots[1].src}" alt="${title}" loading="lazy" class="w-full h-full object-cover" />
+                <img src="${shots[2].src}" alt="${title}" loading="lazy" class="w-full h-full object-cover" />
+              </div>`;
+          }
+        });
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
