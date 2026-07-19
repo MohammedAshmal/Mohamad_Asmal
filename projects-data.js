@@ -7,9 +7,9 @@ window.PROJECTS = {
     tags: ["C#"],
     screenshots: [
       // { src: "assets/projects/cricket-scoring-app/1.jpg", caption: "Live scoring window during a match." },
-    {src: "assets/score/01.png"},
-    {src: "assets/score/02.png"},
-    {src: "assets/score/03.png"},
+    {src: "assets/Score/01.png"},
+    {src: "assets/Score/02.png"},
+    {src: "assets/Score/03.png"},
     ],
   },
 
